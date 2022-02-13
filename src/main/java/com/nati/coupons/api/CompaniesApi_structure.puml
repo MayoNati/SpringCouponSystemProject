@@ -1,0 +1,248 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.nati.coupons.api.CompaniesApi"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3373928 { 
+   	label=nati
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_501469319 { 
+   	label=coupons
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   CompaniesApi535163648[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CompaniesApi</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   companyController: CompanyController [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createCompany(newCompany: Company)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCompanyById(id: long): Company</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCompanyByNameAndPassword(name: String, password: String): Company</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeCompanyById(companyId: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCompany(company: Company)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CompanyController1113940164[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CompanyController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   companyDao: CompanyDAO [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   couponDAO: CouponDAO [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createCompany(company: Company)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCompanyById(id: long): Company</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCompanyByNameAndPassword(name: String, password: String): Company</TD></TR>
+<TR><TD ALIGN="LEFT" >- isCompanyDetailsValid(company: Company): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- isCompanyExistInCoupons(companyId: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- isEmailValid(userEmail: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- isIdExist(id: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- isPasswordValid(password: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >- listOfCouponIdToRemoveFromPursachesCoupons(companyId: long): List&lt;Long&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ login(userName: String, userPassword: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeCompanyById(companyId: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCompany(company: Company)</TD></TR>
+<TR><TD ALIGN="LEFT" >- validateNameExistOfCompany(name: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CompanyDAO535161224[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CompanyDAO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   con: ConnectionPool [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ createCompany(company: Company)</TD></TR>
+<TR><TD ALIGN="LEFT" >- extractCompanyFromResultSet(resultSet: ResultSet): Company</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCompanyById(companyId: long): Company</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCompanyByNameAndPassword(name: String, password: String): Company</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCouponIdByCompanyId(companyId: long): long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isCompanyExistById(companyId: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isCompanyIdExistInCoupons(companyId: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isCompanyNameExist(companyName: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ login(requiredUserName: String, requiredUserPassword: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAllCouponsUnderCompanyId(companyId: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAllPursachesCouponsOfCompanyId(couponId: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeCompanyById(id: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCompany(company: Company)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateEmail(companyId: long, newEmail: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updatePassword(companyId: long, newPassword: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- updatePasswordOrEmail(companyId: long, newValue: String, updatePassOrEmail: String): boolean</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+ConnectionPool837948521[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)ConnectionPool</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   availableConnections: Vector&lt;Connection&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   busyConnections: Vector&lt;Connection&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   connectionPending: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   driver: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   maxConnections: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   password: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   url: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   username: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   waitIfBusy: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ closeAllConnections()</TD></TR>
+<TR><TD ALIGN="LEFT" >- closeConnections(connections: Vector&lt;Connection&gt;)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ closeDatabaseResources(connection: Connection, preparedStatement: PreparedStatement)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ free(connection: Connection)</TD></TR>
+<TR><TD ALIGN="LEFT" >- makeBackgroundConnection()</TD></TR>
+<TR><TD ALIGN="LEFT" >- makeNewConnection(): Connection</TD></TR>
+<TR><TD ALIGN="LEFT" >+ run()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ totalConnections(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CouponDAO535161224[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CouponDAO</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   con: ConnectionPool [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ buyCoupon(id: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ createCoupon(coupon: Coupon)</TD></TR>
+<TR><TD ALIGN="LEFT" >- extractCouponFromResultSet(resultSet: ResultSet): Coupon</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllCouponsByCompanyId(companyId: Long): Collection&lt;Coupon&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllCouponsUpToDate(upToDate: String): Collection&lt;Coupon&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllPurchasedCouponsByCusomerId(customerId: long): Collection&lt;Coupon&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllPurchasedCouponsByPrice(price: long): Collection&lt;Coupon&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getAllPurchasedCouponsByType(coupontype: CouponType): Collection&lt;Coupon&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCouponById(couponId: long): Coupon</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCouponIdByComapnyId(companyId: long): long</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCouponsByType(couponType: CouponType): Collection&lt;Coupon&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isCouponExistById(couponId: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isCustomerAlreadyBoughtCoupon(customerID: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isCustomerAlreadyPurcheasedCoupon(customerId: long): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ isTitleNameExist(name: String): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ purchasedCoupon(companyId: long, customerId: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAllCouponsUnderCompanyId(id: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAllExpireCoupons()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAllPursachesCouponsToCompanyId(id: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeCouponById(id: long)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCoupon(coupon: Coupon)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateCouponAmountAfterPurchase(coupon: Coupon)</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+CompaniesApi535163648 -> CompanyController1113940164[label="companyController
+[0..1]"];
+CompanyController1113940164 -> CompanyDAO535161224[label="companyDao
+[0..1]"];
+CompanyController1113940164 -> CouponDAO535161224[label="couponDAO
+[0..1]"];
+CompanyDAO535161224 -> ConnectionPool837948521[label="con
+[0..1]"];
+CouponDAO535161224 -> ConnectionPool837948521[label="con
+[0..1]"];
+    
+}
+@enduml

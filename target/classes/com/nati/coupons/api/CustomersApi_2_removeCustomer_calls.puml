@@ -1,0 +1,214 @@
+@startuml
+
+/' diagram meta data start
+config=CallConfiguration;
+{
+  "rootMethod": "com.nati.coupons.api.CustomersApi#removeCustomer(long)",
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": true,
+    "cutInterfaceStructures": true,
+    "cutDataStructures": true,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 3,
+    "backwardDepth": 3,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showMethodParametersTypes": false,
+    "showMethodParametersNames": false,
+    "showMethodReturnType": false,
+    "showPackageLevels": 2,
+    "showCallOrder": false,
+    "edgeMode": "MethodsOnly", // TypesOnly, MethodsOnly, TypesAndMethods, MethodsAndDirectTypeUsage
+    "showDetailedClassStructure": false
+  },
+  "rootClass": "com.nati.coupons.api.CustomersApi"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="LR"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_3373928 { 
+   	label=nati
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_501469319 { 
+   	label=coupons
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   subgraph cluster_126796845 { 
+   	label=CustomersApi
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   CustomersApi535163648XXXremoveCustomer3327612[
+	label="+ removeCustomer()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomersApi
+
+null"
+	penwidth=4
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_188115906 { 
+   	label=CustomerDAO
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   CustomerDAO535161224XXXgetCustomerById3327612[
+	label="+ getCustomerById()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomerDAO
+
+null"
+	fontcolor=darkgreen
+];
+
+CustomerDAO535161224XXXremoveAllPursachesCoupons3327612[
+	label="+ removeAllPursachesCoupons()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomerDAO
+
+null"
+	fontcolor=darkgreen
+];
+
+CustomerDAO535161224XXXremoveCustomerById3327612[
+	label="+ removeCustomerById()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomerDAO
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_2029129493 { 
+   	label=DaoUtils
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   DaoUtils535161224XXXremoveFromDB864365041[
+	label="+ removeFromDB()"
+	style=filled
+	fillcolor=white
+	tooltip="DaoUtils
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_546282639 { 
+   	label=ConnectionPool
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   ConnectionPool837948521XXXcloseDatabaseResources694709536[
+	label="+ closeDatabaseResources()"
+	style=filled
+	fillcolor=white
+	tooltip="ConnectionPool
+
+null"
+	fontcolor=darkgreen
+];
+} 
+
+subgraph cluster_623243356 { 
+   	label=CustomerController
+	labeljust=l
+	fillcolor=white
+	style=filled
+   
+   CustomerController1113940164XXXremoveCustomer3327612[
+	label="+ removeCustomer()"
+	style=filled
+	fillcolor=white
+	tooltip="CustomerController
+
+null"
+	fontcolor=darkgreen
+];
+} 
+} 
+} 
+
+'edges    
+CustomerController1113940164XXXremoveCustomer3327612 -> CustomerDAO535161224XXXgetCustomerById3327612;
+CustomerController1113940164XXXremoveCustomer3327612 -> CustomerDAO535161224XXXremoveAllPursachesCoupons3327612;
+CustomerController1113940164XXXremoveCustomer3327612 -> CustomerDAO535161224XXXremoveCustomerById3327612;
+CustomerDAO535161224XXXgetCustomerById3327612 -> ConnectionPool837948521XXXcloseDatabaseResources694709536;
+CustomerDAO535161224XXXremoveAllPursachesCoupons3327612 -> DaoUtils535161224XXXremoveFromDB864365041;
+CustomerDAO535161224XXXremoveCustomerById3327612 -> DaoUtils535161224XXXremoveFromDB864365041;
+CustomersApi535163648XXXremoveCustomer3327612 -> CustomerController1113940164XXXremoveCustomer3327612;
+    
+}
+@enduml
